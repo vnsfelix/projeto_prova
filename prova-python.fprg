@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EcoSort"/>
+        <attribute name="authors" value="Gemini"/>
+        <attribute name="about" value="Tradu&#231;&#227;o do script EcoSort de Python para Flowgorithm."/>
+        <attribute name="saved" value="2026-06-10 11:51:22 "/>
+        <attribute name="created" value="2026-06-10 11:30:00 PM"/>
+        <attribute name="edited" value="QWx1bm87RVNOMTIyRDEyNzM4OTE7MjAyNi0wNi0xMDsiMTE6NTE6MjIgIjsxOzI2MTc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="totalpcts" type="Integer" array="False" size=""/>
+            <declare name="leves" type="Integer" array="False" size=""/>
+            <declare name="padroes" type="Integer" array="False" size=""/>
+            <declare name="pesados" type="Integer" array="False" size=""/>
+            <declare name="faturamento" type="Real" array="False" size=""/>
+            <declare name="pesototal" type="Integer" array="False" size=""/>
+            <declare name="ticketmedio" type="Real" array="False" size=""/>
+            <declare name="custo" type="Real" array="False" size=""/>
+            <declare name="peso" type="Integer" array="False" size=""/>
+            <declare name="entrada" type="String" array="False" size=""/>
+            <declare name="destino" type="String" array="False" size=""/>
+            <declare name="classificacao" type="String" array="False" size=""/>
+            <declare name="continuar" type="Boolean" array="False" size=""/>
+            <assign variable="peso" expression="0.0"/>
+            <assign variable="totalpcts" expression="0"/>
+            <assign variable="faturamento" expression="0.0"/>
+            <assign variable="leves" expression="0"/>
+            <assign variable="padroes" expression="0"/>
+            <assign variable="pesados" expression="0"/>
+            <assign variable="pesototal" expression="0.0"/>
+            <output expression="&quot; EcoSort iniciado. Digite 'sair' para encerrar ou 'ajuda' para mais informa&#231;&#245;es.&quot;" newline="True"/>
+            <output expression="&quot;----- BEM VINDO AO EcoSort. -----&quot;" newline="True"/>
+            <while expression="totalpcts &lt; 10">
+                <output expression="&quot;----- Pacote &quot; &amp; (totalpcts + 1) &amp; &quot; de 10 -----&quot;" newline="True"/>
+                <output expression="&quot;Digite o peso em kg (ou 'sair'): &quot;" newline="True"/>
+                <input variable="peso"/>
+                <if expression="peso &lt;= 2.0">
+                    <then>
+                        <assign variable="classificacao" expression="&quot;leve&quot;"/>
+                        <assign variable="custo" expression="10.00"/>
+                        <assign variable="leves" expression="leves +1"/>
+                    </then>
+                    <else>
+                        <if expression="peso &lt;= 10.0">
+                            <then>
+                                <assign variable="classificacao" expression="&quot;Padr&#227;o&quot;"/>
+                                <assign variable="custo" expression="20.00"/>
+                                <assign variable="padroes" expression="padroes +1"/>
+                            </then>
+                            <else>
+                                <assign variable="classificacao" expression="&quot;Pesado&quot;"/>
+                                <assign variable="custo" expression="30.00"/>
+                                <assign variable="pesados" expression="pesados +1"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+                <output expression="&quot;[1] Internacional (+20%) | [2] Nacional&quot;" newline="True"/>
+                <input variable="destino"/>
+                <if expression="destino = &quot;1&quot;">
+                    <then>
+                        <assign variable="custo" expression="custo *1.20"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="pesototal" expression="pesototal + peso"/>
+                <assign variable="faturamento" expression="faturamento +custo"/>
+                <assign variable="totalpcts" expression="totalpcts +1"/>
+                <output expression="&quot;Registrado: R$ &quot; &amp; custo" newline="True"/>
+            </while>
+            <if expression="totalpcts &gt; 0">
+                <then>
+                    <assign variable="ticketmedio" expression="faturamento / totalpcts"/>
+                </then>
+                <else>
+                    <assign variable="ticketmedio" expression="0.0"/>
+                </else>
+            </if>
+            <output expression="&quot;================ RELAT&#211;RIO FINAL ================&quot;" newline="True"/>
+            <output expression="&quot;Total de pacotes: &quot; &amp; totalpcts" newline="True"/>
+            <output expression="&quot;Leves: &quot; &amp; leves &amp; &quot; | Padr&#245;es: &quot; &amp; padroes &amp; &quot; | Pesados: &quot; &amp; pesados" newline="True"/>
+            <output expression="&quot;Carga total acumulada: &quot; &amp; pesototal &amp; &quot; kg&quot;" newline="True"/>
+            <output expression="&quot;Faturamento bruto do lote: R$ &quot; &amp; faturamento" newline="True"/>
+            <output expression="&quot;Ticket m&#233;dio por pacote: R$ &quot; &amp; ticketmedio" newline="True"/>
+            <output expression="&quot;=================================================&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
