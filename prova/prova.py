@@ -8,7 +8,7 @@ def EcoSort():
     leves = 0
     padroes = 0
     pesados = 0
-   
+    peso_total = 0.0
     
     while total_pcts < 10:
         print(f"\n----- Pacote {total_pcts + 1} de 10 -----")
@@ -43,19 +43,20 @@ def EcoSort():
         if destino == '1':
             custo = custo * 1.20
             
-       
+        peso_total += peso
         faturamento += custo
         total_pcts += 1
         print(f"Registrado: R$ {custo:.2f}")
 
     
-    print("\n ======== RELATÓRIO FINAL ========")
+    ticket_medio = faturamento / total_pcts if total_pcts > 0 else 0.0
+    
+    print("\n================ RELATÓRIO FINAL ================")
     print(f"Total de pacotes: {total_pcts}")
-    print(f"Carga total: {}")
-    print(f" Leves: {leves} | Padrões: {padroes} | Pesados: {pesados}")
-    print(f" Faturamento: R$ {faturamento:.2f}")
-    print(f"Ticket médio por pacote: {}")
-    print("==================================")
-
+    print(f"Leves: {leves} | Padrões: {padroes} | Pesados: {pesados}")
+    print(f"Carga total acumulada: {peso_total:.2f} kg")
+    print(f"Faturamento bruto do lote: R$ {faturamento:.2f}")
+    print(f"Ticket médio por pacote: R$ {ticket_medio:.2f}")
+    print("=================================================")
 
 EcoSort()
